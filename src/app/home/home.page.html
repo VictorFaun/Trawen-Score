@@ -1,19 +1,12 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="contenido-inner-2" [style.background-image]="'url(' + 'assets/fondo.jpg' + ')' ">
+  </div>
 
-  <div id="container">
-    <ion-button (click)="createSet()">Crear nuevo set</ion-button>
+  <div class="contenido-inner">
+    <div class="card-padre">
+      <div class="local card"></div>
+      <div class="setting card"></div>
+      <div class="visit card"></div>
+    </div>
   </div>
 </ion-content>
