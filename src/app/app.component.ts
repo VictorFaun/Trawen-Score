@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { DatabaseService } from './services/database/database.service';
+import { SplashScreen } from '@capacitor/splash-screen';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,13 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private _database_ :DatabaseService) {
+    this.initApp();
+  }
+
+  async initApp(){
+    let result = await this._database_.initializPlugin();
+    console.log("Carga BDD: ", result)
+    SplashScreen.hide();
+  }
 }
