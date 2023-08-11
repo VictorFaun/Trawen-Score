@@ -1,0 +1,7 @@
+{
+  "name": "Trawen Score",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
