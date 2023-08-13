@@ -68,7 +68,7 @@
 
   ion-label {
     margin-top: 30px;
-    font-size: 30vw;
+    font-size: 28vw;
   }
 }
 
@@ -95,7 +95,7 @@
 
   ion-label {
     margin-top: 30px;
-    font-size: 30vw;
+    font-size: 28vw;
   }
 }
 
@@ -262,14 +262,32 @@
 
 .b-historial {
   position: absolute;
-  top: 3px;
-  right: 3px;
+  top: 40px;
   z-index: 10;
+  
+  transition: all 0.2s ease-in-out;
 }
 
+.menu {
+  width: 45px;
+  background-color: var(--ion-color-dark);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  position: absolute;
+  z-index: 10;
+  top: 40px;
+  right: 0px;
+  border: 1px solid var(--ion-color-light);
+  border-right: 0px;
+  
+  transition: all 0.2s ease-in-out;
+
+  ion-button {
+    margin: 5px;
+  }
+}
 
 .tablet {
-
   .card {
     margin-left: 20px;
     margin-right: 20px;
@@ -283,7 +301,7 @@
     }
 
     ion-label {
-      font-size: 35vw;
+      font-size: 30vw;
     }
   }
 
@@ -293,7 +311,7 @@
     }
 
     ion-label {
-      font-size: 35vw;
+      font-size: 30vw;
     }
   }
 
@@ -323,11 +341,11 @@
       margin-top: 10px;
       margin-bottom: 10px;
     }
-    
+
     ion-button[pos="1"] {
       margin-left: 15%;
     }
-    
+
     ion-button[pos="2"] {
       margin-left: 5%;
     }
@@ -341,6 +359,7 @@
     width: calc((100% / 7) - 4% + 25px);
     transform: translate(50%, -20px);
     margin-bottom: 10px;
+
     ion-icon {
       font-size: 55px;
     }
@@ -355,11 +374,11 @@
       margin-top: 10px;
       margin-bottom: 10px;
     }
-    
+
     ion-button[pos="2"] {
       margin-right: 15%;
     }
-    
+
     ion-button[pos="1"] {
       margin-right: 5%;
     }
@@ -377,6 +396,7 @@
     padding-top: 8px;
     padding-bottom: 8px;
     height: 30px;
+
     ion-select {
       width: 47px;
     }
@@ -390,6 +410,7 @@
     padding-top: 8px;
     padding-bottom: 8px;
     height: 30px;
+
     ion-checkbox {
       --size: 17px;
     }
@@ -414,7 +435,7 @@
       height: 40px;
       margin-top: 10px;
     }
-  
+
     img {
       margin-left: 10px;
       margin-right: 10px;
@@ -424,16 +445,25 @@
 
   .b-change {
     bottom: -45px;
+
     ion-button {
       font-size: xx-large;
     }
   }
 
   .b-historial {
-    top: 0px;
+    top: 40px;
     right: 0px;
     z-index: 10;
-    ion-button{
+
+    ion-button {
+      font-size: xx-large;
+    }
+  }
+
+  .menu {
+    width: 55px;
+    ion-button {
       font-size: xx-large;
     }
   }

@@ -1,12 +1,27 @@
-<ion-content [fullscreen]="true" [class]="isTablet?'tablet':''">
+<ion-content [fullscreen]="true" [class]="!movileDesign?'tablet':''">
   <div class="contenido-inner-2" [style.background-image]="'url(' + 'assets/fondo.jpg' + ')' ">
   </div>
 
   <div class="contenido-inner">
-    <div class="b-historial">
+    <div class="b-historial" [style]="isTablet && !movileDesign?!isOpenMenu?'right: 3px;':'right: 56px;':!isOpenMenu?'right: 3px;':'right: 46px;'">
+      <ion-button fill="clear" (click)="pressMenu()" color="light">
+        <ion-icon [name]="!isOpenMenu?'chevron-back-circle-outline':'chevron-forward-circle-outline'"></ion-icon>
+      </ion-button>
+    </div>
+    <div class="menu" [style]="isTablet && !movileDesign?!isOpenMenu?'right: -55px;':'right: 0px;':!isOpenMenu?'right: -45px;':'right: 0px;'">
+
       <ion-button fill="clear" color="light">
         <ion-icon name="list-circle-outline"></ion-icon>
       </ion-button>
+
+      <ion-button fill="clear" color="light" *ngIf="isTablet" (click)="changeDesign()">
+        <ion-icon name="sync-circle-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button fill="clear" color="light">
+        <ion-icon name="information-circle-outline"></ion-icon>
+      </ion-button>
+
     </div>
     <div class="card-padre">
       <div class="local card">
@@ -76,7 +91,7 @@
       <div class="visit card">
         <ion-input value="Visita" (keyup.enter)="onEnterPress($event)"></ion-input>
         <ion-button fill="clear" color="light">
-          <ion-label>20</ion-label>
+          <ion-label>25</ion-label>
         </ion-button>
       </div>
     </div>

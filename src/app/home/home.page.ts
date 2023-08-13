@@ -10,16 +10,27 @@ import { Platform } from '@ionic/angular';
 export class HomePage {
 
   isTablet = false
+  isOpenMenu = false;
+  movileDesign = true;
 
   constructor(private _database_: DatabaseService, private _platform_: Platform) {
     console.log(this._platform_.platforms())
     if (this._platform_.is("ipad") || this._platform_.is("tablet") || this._platform_.is("phablet")) {
       this.isTablet = true;
+      this.movileDesign = false;
     }
   }
 
   createSet() {
     this._database_.createSet()
+  }
+
+  pressMenu(){
+    this.isOpenMenu = !this.isOpenMenu
+  }
+
+  changeDesign(){
+    this.movileDesign = !this.movileDesign
   }
 
   onEnterPress(event: any) {
