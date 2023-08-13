@@ -28,13 +28,6 @@
   color: var(--ion-color-light);
 }
 
-.b-historial {
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  z-index: 10;
-}
-
 .card-padre {
   height: 100%;
   width: 100%;
@@ -74,7 +67,8 @@
   }
 
   ion-label {
-    font-size: 300px;
+    margin-top: 30px;
+    font-size: 30vw;
   }
 }
 
@@ -100,7 +94,8 @@
   }
 
   ion-label {
-    font-size: 300px;
+    margin-top: 30px;
+    font-size: 30vw;
   }
 }
 
@@ -265,6 +260,13 @@
   }
 }
 
+.b-historial {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  z-index: 10;
+}
+
 
 .tablet {
 
@@ -277,21 +279,21 @@
 
   .local {
     ion-input {
-      font-size: 60px;
+      font-size: 50px;
     }
 
     ion-label {
-      font-size: 40vw;
+      font-size: 35vw;
     }
   }
 
   .visit {
     ion-input {
-      font-size: 60px;
+      font-size: 50px;
     }
 
     ion-label {
-      font-size: 40vw;
+      font-size: 35vw;
     }
   }
 
@@ -320,14 +322,28 @@
     ion-button {
       margin-top: 10px;
       margin-bottom: 10px;
+    }
+    
+    ion-button[pos="1"] {
       margin-left: 15%;
-      margin-right: 15%;
+    }
+    
+    ion-button[pos="2"] {
+      margin-left: 5%;
+    }
+
+    ion-icon {
+      font-size: 70px;
     }
   }
 
   .b-reboot {
-    width: calc((100% / 7) - 4%);
+    width: calc((100% / 7) - 4% + 25px);
     transform: translate(50%, -20px);
+    margin-bottom: 10px;
+    ion-icon {
+      font-size: 55px;
+    }
   }
 
   .b-visit {
@@ -338,21 +354,45 @@
     ion-button {
       margin-top: 10px;
       margin-bottom: 10px;
-      margin-left: 15%;
+    }
+    
+    ion-button[pos="2"] {
       margin-right: 15%;
+    }
+    
+    ion-button[pos="1"] {
+      margin-right: 5%;
+    }
+
+    ion-icon {
+      font-size: 70px;
     }
   }
 
   .i-maxpoint {
     order: 5;
-    width: calc((100% / 7) - 4%);
+    width: calc((100% / 7) - 4% + 25px);
     transform: translate(50%, -20px);
+    font-size: medium;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    height: 30px;
+    ion-select {
+      width: 47px;
+    }
   }
 
   .i-diferencia {
     order: 6;
-    width: calc((100% / 7) - 4%);
+    width: calc((100% / 7) - 4% + 25px);
     transform: translate(-50%, 20px);
+    font-size: medium;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    height: 30px;
+    ion-checkbox {
+      --size: 17px;
+    }
   }
 
   .sets {
@@ -366,12 +406,35 @@
 
   .rrss {
     order: 3;
-    width: calc((100% / 7) - 4%);
+    width: calc((100% / 7) - 4% + 25px);
     transform: translate(-50%, 20px);
 
+
+    ion-button {
+      height: 40px;
+      margin-top: 10px;
+    }
+  
+    img {
+      margin-left: 10px;
+      margin-right: 10px;
+      height: 30px;
+    }
   }
 
   .b-change {
-    bottom: -35px;
+    bottom: -45px;
+    ion-button {
+      font-size: xx-large;
+    }
+  }
+
+  .b-historial {
+    top: 0px;
+    right: 0px;
+    z-index: 10;
+    ion-button{
+      font-size: xx-large;
+    }
   }
 }
