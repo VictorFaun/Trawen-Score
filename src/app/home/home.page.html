@@ -1,12 +1,84 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" [class]="isTablet?'tablet':''">
   <div class="contenido-inner-2" [style.background-image]="'url(' + 'assets/fondo.jpg' + ')' ">
   </div>
 
   <div class="contenido-inner">
+    <div class="b-historial">
+      <ion-button fill="clear" color="light">
+        <ion-icon name="list-circle-outline"></ion-icon>
+      </ion-button>
+    </div>
     <div class="card-padre">
-      <div class="local card"></div>
-      <div class="setting card"></div>
-      <div class="visit card"></div>
+      <div class="local card">
+        <ion-input value="Local" (keyup.enter)="onEnterPress($event)"></ion-input>
+        <ion-button fill="clear" color="light">
+          <ion-label>0</ion-label>
+        </ion-button>
+      </div>
+      <div class="setting card">
+        <div class="logo-trawen">
+          <img src="assets/logoTrawenBorde.png" />
+        </div>
+        <div class="b-local">
+          <ion-button style="margin-bottom: 10px;" fill="clear" color="success">
+            <ion-icon name="add-circle-outline"></ion-icon>
+          </ion-button>
+          <ion-button style="margin-top: 10px;" fill="clear" color="success">
+            <ion-icon name="remove-circle-outline"></ion-icon>
+          </ion-button>
+        </div>
+        <div class="b-reboot">
+          <ion-button fill="clear" color="light">
+            <ion-icon name="refresh-circle-outline"></ion-icon>
+          </ion-button>
+        </div>
+        <div class="b-visit">
+          <ion-button style="margin-bottom: 10px;" fill="clear" color="success">
+            <ion-icon name="add-circle-outline"></ion-icon>
+          </ion-button>
+          <ion-button style="margin-top: 10px;" fill="clear" color="success">
+            <ion-icon name="remove-circle-outline"></ion-icon>
+          </ion-button>
+        </div>
+        <div class="i-maxpoint">
+          <ion-select mode="ios" color="secondary" interface="popover" [value]="25">
+            <ion-select-option *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]"
+              [value]="item">{{item}}</ion-select-option>
+          </ion-select><ion-label>Puntos</ion-label>
+        </div>
+        <div class="i-diferencia">
+          <ion-checkbox color="secondary"></ion-checkbox> <ion-label>Diferencia</ion-label>
+        </div>
+        <div class="sets">
+          <ion-button fill="clear" color="light">
+            <ion-label>0</ion-label>
+          </ion-button>
+          <ion-label style="font-size: 30px;">-</ion-label>
+          <ion-button fill="clear" color="light">
+            <ion-label>0</ion-label>
+          </ion-button>
+        </div>
+        <div class="rrss">
+          <ion-button fill="clear" color="light">
+            <img src="assets/facebook.png" />
+          </ion-button>
+          <ion-button fill="clear" color="light">
+            <img src="assets/instagram.png" />
+          </ion-button>
+        </div>
+
+        <div class="b-change">
+          <ion-button fill="clear" color="light">
+            <ion-icon src="assets/switch-icon.svg"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+      <div class="visit card">
+        <ion-input value="Visita" (keyup.enter)="onEnterPress($event)"></ion-input>
+        <ion-button fill="clear" color="light">
+          <ion-label>0</ion-label>
+        </ion-button>
+      </div>
     </div>
   </div>
 </ion-content>

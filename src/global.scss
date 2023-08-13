@@ -24,3 +24,39 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+@font-face {
+    font-family: 'Yeseva One';
+    src: url('./assets/YesevaOne-Regular.ttf');
+}
+
+* {
+    font-family: 'Yeseva One';
+}
+
+
+
+ion-popover{
+    --background:var(--ion-color-dark);
+    ion-item{
+        --background:var(--ion-color-dark);
+        --color:  var(--ion-color-light);
+        --border-color: var(--ion-color-dark);
+    }
+    ion-item.item-radio-checked {
+        --color:  var(--ion-color-secondary);
+    }
+}
+
+ion-button{
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    --padding-start: 0px;
+    --padding-end: 0px;
+    margin-inline: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    min-height: 0px;
+    font-size: x-large;
+}

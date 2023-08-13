@@ -20,11 +20,13 @@ export interface Set {
   providedIn: 'root'
 })
 export class DatabaseService {
+
   private sqlite: SQLiteConnection = new SQLiteConnection(CapacitorSQLite);
   private db!: SQLiteDBConnection;
   private sets: WritableSignal<Set[]> = signal<Set[]>([]);
   private set: any;
-
+  
+  isOnline = false;
 
   constructor() { }
 
@@ -55,7 +57,7 @@ export class DatabaseService {
 
       await this.db.execute(schema);
       this.loadSets();
-
+      this.isOnline = true
       return true;
     } catch (error) {
       return false;
