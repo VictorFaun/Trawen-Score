@@ -24,8 +24,8 @@ export class DatabaseService {
   private sqlite: SQLiteConnection = new SQLiteConnection(CapacitorSQLite);
   private db!: SQLiteDBConnection;
   private sets: WritableSignal<Set[]> = signal<Set[]>([]);
-  private set: any;
-  
+  private set: WritableSignal<Set | null> = signal<Set | null>(null);
+
   isOnline = false;
 
   constructor() { }
@@ -60,23 +60,41 @@ export class DatabaseService {
       this.isOnline = true
       return true;
     } catch (error) {
+      this.set.set({
+        id: -1,
+        status: 1,
+        nameVisit: "Visita",
+        nameLocal: "Local",
+        setsVisit: 0,
+        setsLocal: 0,
+        visit: 0,
+        local: 0,
+        maxPoint: 25,
+        difference: true,
+      })
       return false;
     }
+  }
 
+  getSet(){
+    return this.set
+  }
+
+  getAllSets(){
+    return this.sets
   }
 
   async loadSets() {
     const sets = await this.db.query('SELECT * FROM sets WHERE status IN (0, 1)')
     this.sets.set(sets.values || [])
-    
-    const set = await this.db.query('SELECT * FROM sets WHERE status = 1')
-    this.set = set.values
 
-    console.log("sets: ",sets)
-    console.log("set: ",set)
+    const set = await this.db.query('SELECT * FROM sets WHERE status = 1')
+    if (set.values?.length == 1) {
+      this.set.set(set.values[0])
+    }
   }
 
-  async updateSet(set:Set){
+  async updateSet(set: Set) {
     const query = `
       UPDATE sets
       SET
@@ -99,7 +117,7 @@ export class DatabaseService {
     return result
   }
 
-  async deleteSet(set:Set){
+  async deleteSet(set: Set) {
     const query = `
       UPDATE sets
       SET
@@ -114,11 +132,11 @@ export class DatabaseService {
     return result
   }
 
-  async createSet(){
+  async createSet() {
     let query = `UPDATE sets SET status = 0 WHERE status = 1;`;
 
     await this.db.query(query);
-    
+
     query = `INSERT INTO sets DEFAULT VALUES;`;
 
     let result = await this.db.query(query);

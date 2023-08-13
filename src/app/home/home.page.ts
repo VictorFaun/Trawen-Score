@@ -13,16 +13,15 @@ export class HomePage {
   isOpenMenu = false;
   movileDesign = true;
 
+  sets = this._database_.getAllSets();
+  set = this._database_.getSet();
+
+
   constructor(private _database_: DatabaseService, private _platform_: Platform) {
-    console.log(this._platform_.platforms())
-    if (this._platform_.is("ipad") || this._platform_.is("tablet") || this._platform_.is("phablet")) {
+    if (this._platform_.is("ipad") || this._platform_.is("tablet") || this._platform_.is("phablet") || this._platform_.is("desktop")) {
       this.isTablet = true;
       this.movileDesign = false;
     }
-  }
-
-  createSet() {
-    this._database_.createSet()
   }
 
   pressMenu(){
@@ -37,6 +36,15 @@ export class HomePage {
     if (event.key === 'Enter') {
       const inputElement: any = event.target;
       inputElement.blur();
+    }
+  }
+
+  onChangeName(e:any,n:number){
+    if(n==1){
+      console.log("Local: ", e.target.value)
+    }
+    if(n==2){
+      console.log("Vista: ", e.target.value)
     }
   }
 
