@@ -23,53 +23,58 @@
       </ion-button>
 
     </div>
-    <div class="card-padre">
+    <div [class]="invert?'card-padre invert':'card-padre'">
       <div class="local card">
-        <ion-input [value]="set()?.nameLocal" (change)="onChangeName($event,1)" (keyup.enter)="onEnterPress($event)"></ion-input>
-        <ion-button fill="clear" color="light">
+        <ion-input [ngModel]="set()?.nameLocal" (change)="onChangeName($event,1)" (keyup.enter)="onEnterPress($event)"></ion-input>
+        <ion-button fill="clear" color="light" (click)="onChangePoint(1,1,1)" (touchstart)="onButtonTouchStart(1,2,1)" (touchend)="onButtonTouchEnd()">
           <ion-label>{{set()?.local}}</ion-label>
         </ion-button>
+        <div class="win" *ngIf="localWin()" >
+          <ion-button color="primary" (click)="onWin(1)">
+            Ganador!
+          </ion-button>
+        </div>
       </div>
       <div class="setting card">
         <div class="logo-trawen">
           <img src="assets/logoTrawenBorde.png" />
         </div>
         <div class="b-local">
-          <ion-button style="margin-bottom: 10px;" pos="1" fill="clear" color="success">
+          <ion-button style="margin-bottom: 10px;" (click)="onChangePoint(1,1,1)" pos="1" fill="clear" color="success">
             <ion-icon name="add-circle-outline"></ion-icon>
           </ion-button>
-          <ion-button style="margin-top: 10px;" pos="2" fill="clear" color="success">
+          <ion-button style="margin-top: 10px;"(click)="onChangePoint(1,2,1)" pos="2" fill="clear" color="success">
             <ion-icon name="remove-circle-outline"></ion-icon>
           </ion-button>
         </div>
         <div class="b-reboot">
-          <ion-button fill="clear" color="light">
+          <ion-button fill="clear" color="light" (click)="onReboot()"  (touchstart)="onButtonTouchStart(-1,-1,-1)" (touchend)="onButtonTouchEnd()">
             <ion-icon name="refresh-circle-outline"></ion-icon>
           </ion-button>
         </div>
         <div class="b-visit">
-          <ion-button style="margin-bottom: 10px;" pos="1" fill="clear" color="success">
+          <ion-button style="margin-bottom: 10px;" (click)="onChangePoint(2,1,1)" pos="1" fill="clear" color="success">
             <ion-icon name="add-circle-outline"></ion-icon>
           </ion-button>
-          <ion-button style="margin-top: 10px;" pos="2" fill="clear" color="success">
+          <ion-button style="margin-top: 10px;" (click)="onChangePoint(2,2,1)" pos="2" fill="clear" color="success">
             <ion-icon name="remove-circle-outline"></ion-icon>
           </ion-button>
         </div>
         <div class="i-maxpoint">
-          <ion-select mode="ios" color="secondary" interface="popover" [value]="25">
+          <ion-select mode="ios" color="secondary" interface="popover" [ngModel]="set()?.maxPoint" (ngModelChange)="onChangeMaxPoint($event)">
             <ion-select-option *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]"
               [value]="item">{{item}}</ion-select-option>
           </ion-select><ion-label>Puntos</ion-label>
         </div>
         <div class="i-diferencia">
-          <ion-checkbox color="secondary"></ion-checkbox> <ion-label>Diferencia</ion-label>
+          <ion-checkbox color="secondary" [ngModel]="set()?.difference" (ngModelChange)="onChangeDifference($event)"></ion-checkbox> <ion-label>Diferencia</ion-label>
         </div>
         <div class="sets">
-          <ion-button fill="clear" color="light">
+          <ion-button fill="clear" color="light" (click)="onChangePoint(1,1,2)" (touchstart)="onButtonTouchStart(1,2,2)" (touchend)="onButtonTouchEnd()">
             <ion-label>{{set()?.setsLocal}}</ion-label>
           </ion-button>
           <ion-label style="font-size: 30px;">-</ion-label>
-          <ion-button fill="clear" color="light">
+          <ion-button fill="clear" color="light" (click)="onChangePoint(2,1,2)" (touchstart)="onButtonTouchStart(2,2,2)" (touchend)="onButtonTouchEnd()">
             <ion-label>{{set()?.setsVisit}}</ion-label>
           </ion-button>
         </div>
@@ -83,16 +88,21 @@
         </div>
 
         <div class="b-change">
-          <ion-button fill="clear" color="light">
+          <ion-button fill="clear" color="light" (click)="onInvert()">
             <ion-icon src="assets/switch-icon.svg"></ion-icon>
           </ion-button>
         </div>
       </div>
       <div class="visit card">
-        <ion-input [value]="set()?.nameVisit" (change)="onChangeName($event,2)"  (keyup.enter)="onEnterPress($event)"></ion-input>
-        <ion-button fill="clear" color="light">
+        <ion-input [ngModel]="set()?.nameVisit" (change)="onChangeName($event,2)"  (keyup.enter)="onEnterPress($event)"></ion-input>
+        <ion-button fill="clear" color="light" (click)="onChangePoint(2,1,1)"  (touchstart)="onButtonTouchStart(2,2,1)" (touchend)="onButtonTouchEnd()">
           <ion-label>{{set()?.visit}}</ion-label>
         </ion-button>
+        <div class="win" *ngIf="visitaWin()" >
+          <ion-button color="primary" (click)="onWin(2)">
+            Ganador!
+          </ion-button>
+        </div>
       </div>
     </div>
   </div>

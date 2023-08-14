@@ -100,6 +100,21 @@
   }
 }
 
+.win {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  position: absolute;
+  bottom: 20px;
+
+  ion-button {
+    width: 150px;
+  }
+}
+
 .logo-trawen {
   position: absolute;
   top: -30px;
@@ -228,6 +243,10 @@
   ion-label {
     font-size: 45px;
   }
+
+  ion-button {
+    width: 50px;
+  }
 }
 
 .rrss {
@@ -265,7 +284,7 @@
   position: absolute;
   top: 40px;
   z-index: 10;
-  
+
   transition: all 0.2s ease-in-out;
 }
 
@@ -280,11 +299,21 @@
   right: 0px;
   border: 1px solid var(--ion-color-light);
   border-right: 0px;
-  
+
   transition: all 0.2s ease-in-out;
 
   ion-button {
     margin: 5px;
+  }
+}
+
+.invert {
+  .local {
+    order: 2;
+  }
+
+  .visit {
+    order: 0;
   }
 }
 
@@ -424,6 +453,10 @@
     ion-label {
       font-size: 60px;
     }
+
+    ion-button {
+      width: 70px;
+    }
   }
 
   .rrss {
@@ -464,6 +497,7 @@
 
   .menu {
     width: 55px;
+
     ion-button {
       font-size: xx-large;
     }
