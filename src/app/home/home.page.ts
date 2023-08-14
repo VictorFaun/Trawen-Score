@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { DatabaseService } from '../services/database/database.service';
 import { Platform } from '@ionic/angular';
 import { Haptics } from '@capacitor/haptics';
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
+import { AppLauncher } from '@capacitor/app-launcher';
 
 @Component({
   selector: 'app-home',
@@ -25,15 +27,15 @@ export class HomePage {
 
   invert = false;
 
-  constructor(private _database_: DatabaseService, private _platform_: Platform) {
+  constructor(private _database_: DatabaseService, private _platform_: Platform, private _iab_: InAppBrowser) {
     if (this._platform_.is("ipad") || this._platform_.is("tablet") || this._platform_.is("phablet") || this._platform_.is("desktop")) {
       this.isTablet = true;
       this.movileDesign = false;
     }
   }
 
-  onInvert(){
-    this.invert= !this.invert
+  onInvert() {
+    this.invert = !this.invert
   }
 
   onButtonTouchStart(e: any, a: any, s: any) {
@@ -184,13 +186,13 @@ export class HomePage {
     }
     switch (e) {
       case 1:
-        if(set.setsLocal!=9){
-        set.setsLocal++;
+        if (set.setsLocal != 9) {
+          set.setsLocal++;
         }
         break;
       case 2:
-        if(set.setsVisit!=9){
-        set.setsVisit++;
+        if (set.setsVisit != 9) {
+          set.setsVisit++;
         }
         break;
     }
@@ -229,5 +231,43 @@ export class HomePage {
     }
 
     return set
+  }
+
+  async launchExternalApp(iosSchemaName: string, androidPackageName: string, appUrl: string, httpUrl: string, username: string) {
+    let app: string;
+    if (this._platform_.is('ios')) {
+
+      app = iosSchemaName;
+    } else if (this._platform_.is('android')) {
+      app = androidPackageName;
+
+    } else {
+      this._iab_.create(httpUrl + username, '_system');
+      return;
+    }
+
+    let result = await AppLauncher.openUrl({ url: appUrl + username });
+
+    if (!result.completed) {
+      this._iab_.create(httpUrl + username, '_system');
+    }
+  }
+
+  openInstagram(username: string) {
+    this.launchExternalApp('instagram://', 'com.instagram.android', 'instagram://user?username=', 'https://www.instagram.com/', username);
+  }
+
+  openTwitter(username: string) {
+    this.launchExternalApp('twitter://', 'com.twitter.android', 'twitter://user?screen_name=', 'https://twitter.com/', username);
+  }
+
+  openFacebook(username: string) {
+    this.launchExternalApp('fb://', 'com.facebook.katana', 'fb://profile/', 'https://www.facebook.com/', username);
+  }
+
+  openwhatsapp(number: string) {
+
+    this.launchExternalApp('whatsapp://', 'com.whatsapp', 'whatsapp://send?phone=', 'https://wa.me/', number);
+
   }
 }
