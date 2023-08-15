@@ -364,11 +364,31 @@
     }
 
     .b-visit {
-      order: 1
+      order: 1;
+
+      ion-button[pos="1"] {
+        margin-left: 15%;
+        margin-right: 0px;
+      }
+
+      ion-button[pos="2"] {
+        margin-left: 5%;
+        margin-right: 0px;
+      }
     }
 
     .b-local {
-      order: 7
+      order: 7;
+
+      ion-button[pos="2"] {
+        margin-right: 15%;
+        margin-left: 0px;
+      }
+
+      ion-button[pos="1"] {
+        margin-right: 5%;
+        margin-left: 0px;
+      }
     }
 
     .sets {
