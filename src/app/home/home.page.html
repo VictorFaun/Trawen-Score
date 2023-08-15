@@ -40,10 +40,10 @@
           <img src="assets/logoTrawenBorde.png" />
         </div>
         <div class="b-local">
-          <ion-button style="margin-bottom: 10px;" (click)="onChangePoint(1,1,1)" pos="1" fill="clear" color="success">
+          <ion-button style="margin-bottom: 10px;" (click)="onChangePoint(1,1,1,false)" pos="1" fill="clear" color="success">
             <ion-icon name="add-circle-outline"></ion-icon>
           </ion-button>
-          <ion-button style="margin-top: 10px;"(click)="onChangePoint(1,2,1)" pos="2" fill="clear" color="success">
+          <ion-button style="margin-top: 10px;"(click)="onChangePoint(1,2,1,false)" pos="2" fill="clear" color="success">
             <ion-icon name="remove-circle-outline"></ion-icon>
           </ion-button>
         </div>
@@ -53,10 +53,10 @@
           </ion-button>
         </div>
         <div class="b-visit">
-          <ion-button style="margin-bottom: 10px;" (click)="onChangePoint(2,1,1)" pos="1" fill="clear" color="success">
+          <ion-button style="margin-bottom: 10px;" (click)="onChangePoint(2,1,1,false)" pos="1" fill="clear" color="success">
             <ion-icon name="add-circle-outline"></ion-icon>
           </ion-button>
-          <ion-button style="margin-top: 10px;" (click)="onChangePoint(2,2,1)" pos="2" fill="clear" color="success">
+          <ion-button style="margin-top: 10px;" (click)="onChangePoint(2,2,1,false)" pos="2" fill="clear" color="success">
             <ion-icon name="remove-circle-outline"></ion-icon>
           </ion-button>
         </div>
@@ -70,11 +70,11 @@
           <ion-checkbox color="secondary" [ngModel]="set()?.difference" (ngModelChange)="onChangeDifference($event)"></ion-checkbox> <ion-label>Diferencia</ion-label>
         </div>
         <div class="sets">
-          <ion-button fill="clear" color="light" (click)="onChangePoint(1,1,2)" (touchstart)="onButtonTouchStart(1,2,2)" (touchend)="onButtonTouchEnd()">
+          <ion-button class="sets-local" fill="clear" color="light" (click)="onChangePoint(1,1,2)" (touchstart)="onButtonTouchStart(1,2,2)" (touchend)="onButtonTouchEnd()">
             <ion-label>{{set()?.setsLocal}}</ion-label>
           </ion-button>
-          <ion-label style="font-size: 30px;">-</ion-label>
-          <ion-button fill="clear" color="light" (click)="onChangePoint(2,1,2)" (touchstart)="onButtonTouchStart(2,2,2)" (touchend)="onButtonTouchEnd()">
+          <ion-label class="label" style="font-size: 30px;">-</ion-label>
+          <ion-button class="sets-visit" fill="clear" color="light" (click)="onChangePoint(2,1,2)" (touchstart)="onButtonTouchStart(2,2,2)" (touchend)="onButtonTouchEnd()">
             <ion-label>{{set()?.setsVisit}}</ion-label>
           </ion-button>
         </div>

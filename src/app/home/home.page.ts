@@ -22,6 +22,9 @@ export class HomePage {
   pressTimer: any;
   pressTimerBol: any;
 
+  pressTimerAction: any;
+  pressTimerActionBol: any;
+
   localWin = this._database_.getLocalWin();
   visitaWin = this._database_.getVisitWin();
 
@@ -39,6 +42,7 @@ export class HomePage {
   }
 
   onButtonTouchStart(e: any, a: any, s: any) {
+    console.log("\n\nButtonTouchStart!!!!!!!!\n\n")
     if (!this.pressTimerBol) {
       this.pressTimerBol = true
       this.pressTimer = setTimeout(async () => {
@@ -54,6 +58,7 @@ export class HomePage {
 
   onButtonTouchEnd() {
     clearTimeout(this.pressTimer);
+    console.log("\n\nButtonTouchEnd!!!!!!!!\n\n")
     this.pressTimerBol = false
   }
 
@@ -72,9 +77,12 @@ export class HomePage {
     }
   }
 
-  onChangePoint(e: any, a: any, s: any) {
+  onChangePoint(e: any, a: any, s: any, b:boolean = true) {
     let set = this.set();
     if (!set) {
+      return;
+    }
+    if (this.pressTimerActionBol) {
       return;
     }
     switch (s) {
@@ -86,6 +94,8 @@ export class HomePage {
                 if (!this.localWin() &&
                   !(this.visitaWin() && set.local == set.maxPoint - 1)) {
                   set.local++;
+
+                  console.log("\n\nButtonSum!!!!!!!!\n\n")
                 }
                 break;
               case 2:
@@ -101,6 +111,7 @@ export class HomePage {
                 if (!this.visitaWin() &&
                   !(this.localWin() && set.visit == set.maxPoint - 1)) {
                   set.visit++;
+                  console.log("\n\nButtonSum!!!!!!!!\n\n")
                 }
                 break;
               case 2:
@@ -119,6 +130,7 @@ export class HomePage {
               case 1:
                 if (set.setsLocal != 9) {
                   set.setsLocal++;
+                  console.log("\n\nButtonSum!!!!!!!!\n\n")
                 }
                 break;
               case 2:
@@ -133,6 +145,7 @@ export class HomePage {
               case 1:
                 if (set.setsVisit != 9) {
                   set.setsVisit++;
+                  console.log("\n\nButtonSum!!!!!!!!\n\n")
                 }
                 break;
               case 2:
@@ -146,6 +159,12 @@ export class HomePage {
         break;
     }
 
+    if (b) {
+      this.pressTimerActionBol = true
+      this.pressTimerAction = setTimeout(async () => {
+        this.pressTimerActionBol = false;
+      }, 500);
+    }
     this._database_.setSet(this.validaNombre(set))
   }
 

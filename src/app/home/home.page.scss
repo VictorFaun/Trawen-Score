@@ -247,6 +247,18 @@
   ion-button {
     width: 50px;
   }
+
+  .sets-local {
+    order: 1;
+  }
+
+  .label {
+    order: 2;
+  }
+
+  .sets-visit {
+    order: 3;
+  }
 }
 
 .rrss {
@@ -315,9 +327,66 @@
   .visit {
     order: 0;
   }
+
+  .b-visit {
+    order: 1
+  }
+
+  .b-local {
+    order: 3
+  }
+
+  .sets {
+
+    .sets-local {
+      order: 3;
+    }
+
+    .label {
+      order: 2;
+    }
+
+    .sets-visit {
+      order: 1;
+    }
+  }
 }
 
 .tablet {
+
+  .invert {
+    .local {
+      order: 2;
+    }
+
+    .visit {
+      order: 0;
+    }
+
+    .b-visit {
+      order: 1
+    }
+
+    .b-local {
+      order: 7
+    }
+
+    .sets {
+
+      .sets-local {
+        order: 3;
+      }
+
+      .label {
+        order: 2;
+      }
+
+      .sets-visit {
+        order: 1;
+      }
+    }
+  }
+
   .card {
     margin-left: 20px;
     margin-right: 20px;
