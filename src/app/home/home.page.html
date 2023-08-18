@@ -2,15 +2,17 @@
   <div class="contenido-inner-2" [style.background-image]="'url(' + 'assets/fondo.jpg' + ')' ">
   </div>
 
-  <div class="contenido-inner" *ngIf="set()!=null" >
-    <div class="b-historial" [style]="isTablet && !movileDesign?!isOpenMenu?'right: 3px;':'right: 56px;':!isOpenMenu?'right: 3px;':'right: 46px;'">
+  <div class="contenido-inner" *ngIf="set()!=null">
+    <div class="b-historial"
+      [style]="isTablet && !movileDesign?!isOpenMenu?'right: 3px;':'right: 56px;':!isOpenMenu?'right: 3px;':'right: 46px;'">
       <ion-button fill="clear" (click)="pressMenu()" color="light">
         <ion-icon [name]="!isOpenMenu?'chevron-back-circle-outline':'chevron-forward-circle-outline'"></ion-icon>
       </ion-button>
     </div>
-    <div class="menu" [style]="isTablet && !movileDesign?!isOpenMenu?'right: -55px;':'right: 0px;':!isOpenMenu?'right: -45px;':'right: 0px;'">
+    <div class="menu"
+      [style]="isTablet && !movileDesign?!isOpenMenu?'right: -55px;':'right: 0px;':!isOpenMenu?'right: -45px;':'right: 0px;'">
 
-      <ion-button fill="clear" color="light">
+      <ion-button fill="clear" color="light" (click)="historyModal.present()">
         <ion-icon name="list-circle-outline"></ion-icon>
       </ion-button>
 
@@ -25,11 +27,13 @@
     </div>
     <div [class]="invert?'card-padre invert':'card-padre'">
       <div class="local card">
-        <ion-input [ngModel]="set()?.nameLocal" (change)="onChangeName($event,1)" (keyup.enter)="onEnterPress($event)"></ion-input>
-        <ion-button fill="clear" color="light" (click)="onChangePoint(1,1,1)" (touchstart)="onButtonTouchStart(1,2,1)" (touchend)="onButtonTouchEnd()">
+        <ion-input [ngModel]="set()?.nameLocal" (change)="onChangeName($event,1)"
+          (keyup.enter)="onEnterPress($event)"></ion-input>
+        <ion-button fill="clear" color="light" (click)="onChangePoint(1,1,1)" (touchstart)="onButtonTouchStart(1,2,1)"
+          (touchend)="onButtonTouchEnd()">
           <ion-label>{{set()?.local}}</ion-label>
         </ion-button>
-        <div class="win" *ngIf="localWin()" >
+        <div class="win" *ngIf="localWin()">
           <ion-button color="primary" (click)="onWin(1)">
             Ganador!
           </ion-button>
@@ -40,41 +44,50 @@
           <img src="assets/logoTrawenBorde.png" />
         </div>
         <div class="b-local">
-          <ion-button style="margin-bottom: 10px;" (click)="onChangePoint(1,1,1,false)" pos="1" fill="clear" color="success">
+          <ion-button style="margin-bottom: 10px;" (click)="onChangePoint(1,1,1,false)" pos="1" fill="clear"
+            color="success">
             <ion-icon name="add-circle-outline"></ion-icon>
           </ion-button>
-          <ion-button style="margin-top: 10px;"(click)="onChangePoint(1,2,1,false)" pos="2" fill="clear" color="success">
+          <ion-button style="margin-top: 10px;" (click)="onChangePoint(1,2,1,false)" pos="2" fill="clear"
+            color="success">
             <ion-icon name="remove-circle-outline"></ion-icon>
           </ion-button>
         </div>
         <div class="b-reboot">
-          <ion-button fill="clear" color="light" (click)="onReboot()"  (touchstart)="onButtonTouchStart(-1,-1,-1)" (touchend)="onButtonTouchEnd()">
+          <ion-button fill="clear" color="light" (click)="onReboot()" (touchstart)="onButtonTouchStart(-1,-1,-1)"
+            (touchend)="onButtonTouchEnd()">
             <ion-icon name="refresh-circle-outline"></ion-icon>
           </ion-button>
         </div>
         <div class="b-visit">
-          <ion-button style="margin-bottom: 10px;" (click)="onChangePoint(2,1,1,false)" pos="1" fill="clear" color="success">
+          <ion-button style="margin-bottom: 10px;" (click)="onChangePoint(2,1,1,false)" pos="1" fill="clear"
+            color="success">
             <ion-icon name="add-circle-outline"></ion-icon>
           </ion-button>
-          <ion-button style="margin-top: 10px;" (click)="onChangePoint(2,2,1,false)" pos="2" fill="clear" color="success">
+          <ion-button style="margin-top: 10px;" (click)="onChangePoint(2,2,1,false)" pos="2" fill="clear"
+            color="success">
             <ion-icon name="remove-circle-outline"></ion-icon>
           </ion-button>
         </div>
         <div class="i-maxpoint">
-          <ion-select mode="ios" color="secondary" interface="popover" [ngModel]="set()?.maxPoint" (ngModelChange)="onChangeMaxPoint($event)">
+          <ion-select mode="ios" color="secondary" interface="popover" [ngModel]="set()?.maxPoint"
+            (ngModelChange)="onChangeMaxPoint($event)">
             <ion-select-option *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]"
               [value]="item">{{item}}</ion-select-option>
           </ion-select><ion-label>Puntos</ion-label>
         </div>
         <div class="i-diferencia">
-          <ion-checkbox color="secondary" [ngModel]="set()?.difference" (ngModelChange)="onChangeDifference($event)"></ion-checkbox> <ion-label>Diferencia</ion-label>
+          <ion-checkbox color="secondary" [ngModel]="set()?.difference"
+            (ngModelChange)="onChangeDifference($event)"></ion-checkbox> <ion-label>Diferencia</ion-label>
         </div>
         <div class="sets">
-          <ion-button class="sets-local" fill="clear" color="light" (click)="onChangePoint(1,1,2)" (touchstart)="onButtonTouchStart(1,2,2)" (touchend)="onButtonTouchEnd()">
+          <ion-button class="sets-local" fill="clear" color="light" (click)="onChangePoint(1,1,2)"
+            (touchstart)="onButtonTouchStart(1,2,2)" (touchend)="onButtonTouchEnd()">
             <ion-label>{{set()?.setsLocal}}</ion-label>
           </ion-button>
           <ion-label class="label" style="font-size: 30px;">-</ion-label>
-          <ion-button class="sets-visit" fill="clear" color="light" (click)="onChangePoint(2,1,2)" (touchstart)="onButtonTouchStart(2,2,2)" (touchend)="onButtonTouchEnd()">
+          <ion-button class="sets-visit" fill="clear" color="light" (click)="onChangePoint(2,1,2)"
+            (touchstart)="onButtonTouchStart(2,2,2)" (touchend)="onButtonTouchEnd()">
             <ion-label>{{set()?.setsVisit}}</ion-label>
           </ion-button>
         </div>
@@ -94,11 +107,13 @@
         </div>
       </div>
       <div class="visit card">
-        <ion-input [ngModel]="set()?.nameVisit" (change)="onChangeName($event,2)"  (keyup.enter)="onEnterPress($event)"></ion-input>
-        <ion-button fill="clear" color="light" (click)="onChangePoint(2,1,1)"  (touchstart)="onButtonTouchStart(2,2,1)" (touchend)="onButtonTouchEnd()">
+        <ion-input [ngModel]="set()?.nameVisit" (change)="onChangeName($event,2)"
+          (keyup.enter)="onEnterPress($event)"></ion-input>
+        <ion-button fill="clear" color="light" (click)="onChangePoint(2,1,1)" (touchstart)="onButtonTouchStart(2,2,1)"
+          (touchend)="onButtonTouchEnd()">
           <ion-label>{{set()?.visit}}</ion-label>
         </ion-button>
-        <div class="win" *ngIf="visitaWin()" >
+        <div class="win" *ngIf="visitaWin()">
           <ion-button color="primary" (click)="onWin(2)">
             Ganador!
           </ion-button>
@@ -107,3 +122,65 @@
     </div>
   </div>
 </ion-content>
+
+<ion-modal #historyModal>
+  <ng-template>
+    <ion-content>
+      <div class="contentModal">
+        <ion-button class="buttonExit" fill="clear" color="light" (click)="historyModal.dismiss()">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+        <div class="titulo">
+          <ion-label>Historial</ion-label>
+        </div>
+        <div class="table">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th colspan="3" style="text-align: center;">Local</th>
+                  <th></th>
+                  <th colspan="2" style="text-align: center;">Configuracion</th>
+                  <th></th>
+                  <th colspan="3" style="text-align: center;">Visita</th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Puntos</th>
+                  <th>Sets</th>
+                  <th>-</th>
+                  <th>Punto Maximo</th>
+                  <th>Diferencia</th>
+                  <th>-</th>
+                  <th>Nombre</th>
+                  <th>Puntos</th>
+                  <th>Sets</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody  *ngIf="sets()">
+                <tr *ngFor="let set of sets()">
+                  <td [style]="set.status==1?'color:var(--ion-color-secondary);text-align: center;':'text-align: center;'">{{set.nameLocal==""?"Local":set.nameLocal}}</td>
+                  <td [style]="set.status==1?'color:var(--ion-color-secondary);text-align: center;':'text-align: center;'">{{set.local}}</td>
+                  <td [style]="set.status==1?'color:var(--ion-color-secondary);text-align: center;':'text-align: center;'">{{set.setsLocal}}</td>
+                  <td></td>
+                  <td [style]="set.status==1?'color:var(--ion-color-secondary);text-align: center;':'text-align: center;'">{{set.maxPoint}}</td>
+                  <td [style]="set.status==1?'color:var(--ion-color-secondary);text-align: center;':'text-align: center;'">{{set.difference?"Activa":"Desactivada"}}</td>
+                  <td></td>
+                  <td [style]="set.status==1?'color:var(--ion-color-secondary);text-align: center;':'text-align: center;'">{{set.nameVisit==""?"Visita":set.nameVisit}}</td>
+                  <td [style]="set.status==1?'color:var(--ion-color-secondary);text-align: center;':'text-align: center;'">{{set.visit}}</td>
+                  <td [style]="set.status==1?'color:var(--ion-color-secondary);text-align: center;':'text-align: center;'">{{set.setsVisit}}</td>
+                  <td >
+                    <ion-button fill="clear" color="light" (click)="deleteSet(set)" *ngIf="set.status!=1" >
+                      <ion-icon style="color:var(--ion-color-danger-shade)" name="trash-outline"></ion-icon>
+                    </ion-button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DatabaseService } from '../services/database/database.service';
-import { Platform } from '@ionic/angular';
+import { IonModal, Platform } from '@ionic/angular';
 import { Haptics } from '@capacitor/haptics';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { AppLauncher } from '@capacitor/app-launcher';
@@ -11,6 +11,8 @@ import { AppLauncher } from '@capacitor/app-launcher';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+
+  @ViewChild("historyModal", { read: IonModal }) historyModal: IonModal | undefined;
 
   isTablet = false
   isOpenMenu = false;
@@ -77,7 +79,7 @@ export class HomePage {
     }
   }
 
-  onChangePoint(e: any, a: any, s: any, b:boolean = true) {
+  onChangePoint(e: any, a: any, s: any, b: boolean = true) {
     let set = this.set();
     if (!set) {
       return;
@@ -94,8 +96,6 @@ export class HomePage {
                 if (!this.localWin() &&
                   !(this.visitaWin() && set.local == set.maxPoint - 1)) {
                   set.local++;
-
-                  console.log("\n\nButtonSum!!!!!!!!\n\n")
                 }
                 break;
               case 2:
@@ -111,7 +111,6 @@ export class HomePage {
                 if (!this.visitaWin() &&
                   !(this.localWin() && set.visit == set.maxPoint - 1)) {
                   set.visit++;
-                  console.log("\n\nButtonSum!!!!!!!!\n\n")
                 }
                 break;
               case 2:
@@ -130,7 +129,6 @@ export class HomePage {
               case 1:
                 if (set.setsLocal != 9) {
                   set.setsLocal++;
-                  console.log("\n\nButtonSum!!!!!!!!\n\n")
                 }
                 break;
               case 2:
@@ -145,7 +143,6 @@ export class HomePage {
               case 1:
                 if (set.setsVisit != 9) {
                   set.setsVisit++;
-                  console.log("\n\nButtonSum!!!!!!!!\n\n")
                 }
                 break;
               case 2:
@@ -285,8 +282,10 @@ export class HomePage {
   }
 
   openwhatsapp(number: string) {
-
     this.launchExternalApp('whatsapp://', 'com.whatsapp', 'whatsapp://send?phone=', 'https://wa.me/', number);
+  }
 
+  deleteSet(set:any){
+    this._database_.deleteSet(set)
   }
 }
