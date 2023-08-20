@@ -282,16 +282,6 @@
   }
 }
 
-.b-change {
-  position: absolute;
-  bottom: -28px;
-  font-size: x-large;
-
-  ion-button {
-    font-size: large;
-  }
-}
-
 .b-historial {
   position: absolute;
   top: 40px;
@@ -316,6 +306,10 @@
 
   ion-button {
     margin: 5px;
+  }
+  .switch{
+    font-size: 20px;
+    margin-left: 7px;
   }
 }
 
@@ -639,14 +633,6 @@ ion-modal {
     }
   }
 
-  .b-change {
-    bottom: -45px;
-
-    ion-button {
-      font-size: xx-large;
-    }
-  }
-
   .b-historial {
     top: 40px;
     right: 0px;
@@ -662,6 +648,10 @@ ion-modal {
 
     ion-button {
       font-size: xx-large;
+    }
+    .switch{
+      font-size: 27px;
+      margin-left: 9px;
     }
   }
 }

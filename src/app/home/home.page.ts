@@ -18,7 +18,7 @@ export class HomePage {
   isOpenMenu = false;
   movileDesign = true;
 
-  sets = this._database_.getAllSets();
+  //sets = this._database_.getAllSets();
   set = this._database_.getSet();
 
   pressTimer: any;
@@ -44,7 +44,6 @@ export class HomePage {
   }
 
   onButtonTouchStart(e: any, a: any, s: any) {
-    console.log("\n\nButtonTouchStart!!!!!!!!\n\n")
     if (!this.pressTimerBol) {
       this.pressTimerBol = true
       this.pressTimer = setTimeout(async () => {
@@ -60,7 +59,6 @@ export class HomePage {
 
   onButtonTouchEnd() {
     clearTimeout(this.pressTimer);
-    console.log("\n\nButtonTouchEnd!!!!!!!!\n\n")
     this.pressTimerBol = false
   }
 

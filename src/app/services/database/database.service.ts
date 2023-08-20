@@ -23,7 +23,7 @@ export class DatabaseService {
 
   private sqlite: SQLiteConnection = new SQLiteConnection(CapacitorSQLite);
   private db!: SQLiteDBConnection;
-  private sets: WritableSignal<Set[]> = signal<Set[]>([]);
+  //private sets: WritableSignal<Set[]> = signal<Set[]>([]);
   private set: WritableSignal<Set | null> = signal<Set | null>(null);
   
   private localWin: WritableSignal<boolean> = signal<boolean>(false);
@@ -92,28 +92,17 @@ export class DatabaseService {
   }
 
   setSet(set:Set){
-    if(this.isOnline){
-      this.updateSet(set);
-    }else{
-      if(!set.nameLocal.replace(/\s/g, '')){
-        set.nameLocal="Local"
-      }
-      if(!set.nameVisit.replace(/\s/g, '')){
-        set.nameVisit="Visita"
-      }
-      this.validaWin(set)
-      this.set.set(set)
-    }
+    this.updateSet(set);
   }
 
-  getAllSets(){
-    return this.sets
-  }
+  // getAllSets(){
+  //   return this.sets
+  // }
 
   async loadSets() {
-    const sets = await this.db.query('SELECT * FROM sets WHERE status IN (0, 1)')
-    this.sets.set(sets.values || [])
-    console.log("sets: ",sets)
+    // const sets = await this.db.query('SELECT * FROM sets WHERE status IN (0, 1)')
+    // this.sets.set(sets.values || [])
+    // console.log("sets: ",sets)
 
     const set = await this.db.query('SELECT * FROM sets WHERE status = 1')
     if (set.values?.length == 1) {
@@ -132,8 +121,17 @@ export class DatabaseService {
   }
 
   async updateSet(set: Set) {
-    console.log("set a cambiar: ", set)
-    console.log("nombre local: ", set.nameLocal)
+    if(!this.isOnline){
+      if(set.nameLocal.replace(/\s/g, '')==""){
+        set.nameLocal="Local"
+      }
+      if(!set.nameVisit.replace(/\s/g, '')){
+        set.nameVisit="Visita"
+      }
+      this.validaWin(set)
+      this.set.set(set)
+      return
+    }
     const query = `
       UPDATE sets
       SET
@@ -191,12 +189,13 @@ export class DatabaseService {
       return;
     }
 
-    let query = `UPDATE sets SET status = 0 WHERE status = 1;`;
+    // let query = `UPDATE sets SET status = 0 WHERE status = 1;`;
+    // await this.db.query(query);
 
+    let query = `DELETE FROM sets`;
     await this.db.query(query);
 
     query = `INSERT INTO sets DEFAULT VALUES;`;
-
     let result = await this.db.query(query);
 
     this.loadSets();
@@ -230,20 +229,19 @@ export class DatabaseService {
       return;
     }
 
-    let query = `UPDATE sets SET status = 0 WHERE status = 1;`;
+    // let query = `UPDATE sets SET status = 0 WHERE status = 1;`;
+    // await this.db.query(query);
 
+    let query = `DELETE FROM sets`;
     await this.db.query(query);
 
     query = `INSERT INTO sets (status,nameVisit,nameLocal,setsVisit,setsLocal,visit,local,maxPoint,difference) VALUES (1,"${set.nameVisit}","${set.nameLocal}",${set.setsVisit},${set.setsLocal},0,0,${set.maxPoint},${set.difference});`;
-
     let result = await this.db.query(query);
 
     this.loadSets();
 
     return result
   }
-
-  
 
   validaWin(set: any) {
     if (set.local >= set.maxPoint) {
@@ -268,5 +266,4 @@ export class DatabaseService {
       this.visitWin.set(false);
     }
   }
-
 }
