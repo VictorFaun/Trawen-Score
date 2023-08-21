@@ -20,6 +20,6 @@ export class AppComponent {
   async initApp() {
     let result = await this._database_.initializPlugin();
     console.log("Carga BDD: ", result)
-    SplashScreen.hide({fadeOutDuration:200});
+    //SplashScreen.hide({fadeOutDuration:200});
   }
 }
