@@ -160,7 +160,7 @@ export class HomePage {
         this.pressTimerActionBol = false;
       }, 500);
     }
-    this._database_.setSet(this.validaNombre(set))
+    this._database_.setSet(set)
   }
 
   onChangeMaxPoint(e: any) {
@@ -171,7 +171,7 @@ export class HomePage {
 
     set.maxPoint = e
 
-    this._database_.setSet(this.validaNombre(set))
+    this._database_.setSet(set)
   }
 
   onChangeDifference(e: any) {
@@ -182,7 +182,7 @@ export class HomePage {
 
     set.difference = e
 
-    this._database_.setSet(this.validaNombre(set))
+    this._database_.setSet(set)
   }
 
   onReboot() {
@@ -190,7 +190,7 @@ export class HomePage {
     if (!set) {
       return;
     }
-    this._database_.createSetBySet(this.validaNombre(set))
+    this._database_.createSetBySet(set)
   }
 
   onWin(e: any) {
@@ -210,41 +210,23 @@ export class HomePage {
         }
         break;
     }
-    this._database_.createSetBySet(this.validaNombre(set))
+    this._database_.createSetBySet(set)
   }
 
   onChangeName(e: any, n: number) {
     let set = this.set();
     if (n == 1 && set) {
-      if (e.target.value.toLowerCase().replace(/\s/g, '') == "local") {
-        set.nameLocal = ''
-      } else {
-        set.nameLocal = e.target.value
-      }
+      
+      set.nameLocal = e.target.value
     }
     if (n == 2 && set) {
-      if (e.target.value.toLowerCase().replace(/\s/g, '') == "visit") {
-        set.nameVisit = ''
-      } else {
-        set.nameVisit = e.target.value
-      }
+      
+      set.nameVisit = e.target.value
     }
     if (set) {
 
-      this._database_.setSet(this.validaNombre(set))
+      this._database_.setSet(set)
     }
-  }
-
-  validaNombre(set: any) {
-    if (set.nameLocal.toLowerCase().replace(/\s/g, '') == "local") {
-      set.nameLocal = ''
-    }
-
-    if (set.nameVisit.toLowerCase().replace(/\s/g, '') == "visit") {
-      set.nameVisit = ''
-    }
-
-    return set
   }
 
   async launchExternalApp(iosSchemaName: string, androidPackageName: string, appUrl: string, httpUrl: string, username: string) {
@@ -281,9 +263,5 @@ export class HomePage {
 
   openwhatsapp(number: string) {
     this.launchExternalApp('whatsapp://', 'com.whatsapp', 'whatsapp://send?phone=', 'https://wa.me/', number);
-  }
-
-  deleteSet(set:any){
-    this._database_.deleteSet(set)
   }
 }

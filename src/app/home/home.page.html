@@ -12,10 +12,6 @@
     <div class="menu"
       [style]="isTablet && !movileDesign?!isOpenMenu?'right: -55px;':'right: 0px;':!isOpenMenu?'right: -45px;':'right: 0px;'">
 
-      <!-- <ion-button fill="clear" color="light" (click)="historyModal.present()">
-        <ion-icon name="list-circle-outline"></ion-icon>
-      </ion-button> -->
-
       <ion-button class="switch" fill="clear" color="light" (click)="onInvert()">
         <ion-icon src="assets/switch-icon.svg"></ion-icon>
       </ion-button>
@@ -121,65 +117,3 @@
     </div>
   </div>
 </ion-content>
-
-<!-- <ion-modal #historyModal>
-  <ng-template>
-    <ion-content>
-      <div class="contentModal">
-        <ion-button class="buttonExit" fill="clear" color="light" (click)="historyModal.dismiss()">
-          <ion-icon name="close-circle-outline"></ion-icon>
-        </ion-button>
-        <div class="titulo">
-          <ion-label>Historial</ion-label>
-        </div>
-        <div class="table">
-          <div class="table-container">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th colspan="3" style="text-align: center;">Local</th>
-                  <th></th>
-                  <th colspan="2" style="text-align: center;">Configuracion</th>
-                  <th></th>
-                  <th colspan="3" style="text-align: center;">Visita</th>
-                  <th></th>
-                </tr>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Puntos</th>
-                  <th>Sets</th>
-                  <th>-</th>
-                  <th>Punto Maximo</th>
-                  <th>Diferencia</th>
-                  <th>-</th>
-                  <th>Nombre</th>
-                  <th>Puntos</th>
-                  <th>Sets</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody  *ngIf="sets()">
-                <tr *ngFor="let set of sets()">
-                  <td [style]="set.status==1?'color:var(--ion-color-secondary);text-align: center;':'text-align: center;'">{{set.nameLocal==""?"Local":set.nameLocal}}</td>
-                  <td [style]="set.status==1?'color:var(--ion-color-secondary);text-align: center;':'text-align: center;'">{{set.local}}</td>
-                  <td [style]="set.status==1?'color:var(--ion-color-secondary);text-align: center;':'text-align: center;'">{{set.setsLocal}}</td>
-                  <td></td>
-                  <td [style]="set.status==1?'color:var(--ion-color-secondary);text-align: center;':'text-align: center;'">{{set.maxPoint}}</td>
-                  <td [style]="set.status==1?'color:var(--ion-color-secondary);text-align: center;':'text-align: center;'">{{set.difference?"Activa":"Desactivada"}}</td>
-                  <td></td>
-                  <td [style]="set.status==1?'color:var(--ion-color-secondary);text-align: center;':'text-align: center;'">{{set.nameVisit==""?"Visita":set.nameVisit}}</td>
-                  <td [style]="set.status==1?'color:var(--ion-color-secondary);text-align: center;':'text-align: center;'">{{set.visit}}</td>
-                  <td [style]="set.status==1?'color:var(--ion-color-secondary);text-align: center;':'text-align: center;'">{{set.setsVisit}}</td>
-                  <td >
-                    <ion-button fill="clear" color="light" (click)="deleteSet(set)" *ngIf="set.status!=1" >
-                      <ion-icon style="color:var(--ion-color-danger-shade)" name="trash-outline"></ion-icon>
-                    </ion-button></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </ion-content>
-  </ng-template>
-</ion-modal> -->
