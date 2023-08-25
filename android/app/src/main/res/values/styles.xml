@@ -17,7 +17,7 @@
 
     <style name="AppTheme.NoActionBarLaunch" parent="AppTheme.NoActionBar">
         <item name="android:background">@color/fondo</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/logo</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/logo3</item>
         <item name="android:windowSplashScreenBackground">@color/fondo</item>
     </style>
 </resources>
