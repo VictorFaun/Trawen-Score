@@ -3,25 +3,28 @@
   </div>
 
   <div class="contenido-inner" *ngIf="set()!=null">
-    <div class="b-historial"
+
+    <div class="b-switch" *ngIf="!isTablet">
+      <ion-button class="switch" fill="clear" color="light" (click)="onInvert()">
+        <ion-icon src="assets/switch-icon.svg"></ion-icon>
+      </ion-button>
+    </div>
+
+    <div class="b-historial" *ngIf="isTablet"
       [style]="isTablet && !movileDesign?!isOpenMenu?'right: 3px;':'right: 56px;':!isOpenMenu?'right: 3px;':'right: 46px;'">
       <ion-button fill="clear" (click)="pressMenu()" color="light">
         <ion-icon [name]="!isOpenMenu?'chevron-back-circle-outline':'chevron-forward-circle-outline'"></ion-icon>
       </ion-button>
     </div>
-    <div class="menu"
+    <div class="menu" *ngIf="isTablet"
       [style]="isTablet && !movileDesign?!isOpenMenu?'right: -55px;':'right: 0px;':!isOpenMenu?'right: -45px;':'right: 0px;'">
 
       <ion-button class="switch" fill="clear" color="light" (click)="onInvert()">
         <ion-icon src="assets/switch-icon.svg"></ion-icon>
       </ion-button>
 
-      <ion-button fill="clear" color="light" *ngIf="isTablet" (click)="changeDesign()">
+      <ion-button fill="clear" color="light" (click)="changeDesign()">
         <ion-icon name="sync-circle-outline"></ion-icon>
-      </ion-button>
-
-      <ion-button fill="clear" color="light">
-        <ion-icon name="information-circle-outline"></ion-icon>
       </ion-button>
 
     </div>

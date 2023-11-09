@@ -108,10 +108,10 @@
   align-items: center;
   z-index: 20;
   position: absolute;
-  bottom: 20px;
+  bottom: 15px;
 
   ion-button {
-    width: 150px;
+    width: 200px;
   }
 }
 
@@ -288,6 +288,12 @@
   z-index: 10;
 
   transition: all 0.2s ease-in-out;
+}
+
+.b-switch{
+  position: absolute;
+  z-index: 10;
+  right: 10px;
 }
 
 .menu {
